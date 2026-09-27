@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Steam Playtime Dashboard",
+  "short_name": "Playtime",
+  "description": "Steam oyun kütüphanen ve oynama sürelerin tek bir panelde.",
+  "lang": "tr-TR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b0d13",
+  "theme_color": "#0b0d13",
+  "icons": [
+    { "src": "/icons/playtime-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/playtime-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

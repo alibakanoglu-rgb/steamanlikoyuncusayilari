@@ -1,0 +1,8 @@
+{
+  "name": "steam-playtime-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Steam library playtime dashboard",
+  "scripts": { "start": "node server.mjs" },
+  "engines": { "node": ">=18" }
+}

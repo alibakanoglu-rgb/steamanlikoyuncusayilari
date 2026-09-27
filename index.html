@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0d13"><meta name="description" content="Steam oyun kütüphanen ve oynama sürelerin tek bir panelde."><title>Steam Playtime — Kütüphane özeti</title>
+  <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/playtime-192.png"><link rel="preconnect" href="https://cdn.cloudflare.steamstatic.com"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Steam Playtime ana sayfa"><span class="brand-mark">S</span><span>playtime<span class="brand-dot">.</span></span></a>
+      <div class="side-caption">KÜTÜPHANEM</div>
+      <a class="nav-item active" href="#library"><span class="nav-icon">▦</span> Oyun kütüphanesi</a>
+      <a class="nav-item" href="#insights"><span class="nav-icon">▤</span> Oynama özeti</a>
+      <div class="sidebar-bottom"><div class="privacy-icon">⌑</div><strong>Önce gizlilik</strong><p>Bilgileriniz bu tarayıcıda saklanır. API anahtarınız uygulama sunucusuna kaydedilmez.</p><button id="open-settings" class="text-button">Bağlantıyı yönet <span>↗</span></button></div>
+    </aside>
+    <main class="main-content" id="library">
+      <header class="topbar"><div class="breadcrumb">Kütüphane <span>/</span> <b>Oynama süresi</b></div><div class="top-actions"><span class="sync-status"><i></i><span id="sync-label">Bağlantı bekleniyor</span></span><button class="install-app" id="install-app" hidden>Uygulamayı yükle</button><button class="avatar" id="top-settings" title="Bağlantı ayarları">S</button></div></header>
+      <section class="welcome"><div><div class="eyebrow"><span class="eyebrow-line"></span> STEAM KÜTÜPHANEN</div><h1>Oyun zamanın,<br><span>tek bir yerde.</span></h1><p class="intro">Neler oynadığını keşfet. En sevdiğin oyunlara ne kadar vakit ayırdığını gör.</p></div><div class="welcome-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-disc">◷</div><span class="art-star star-a">✳</span><span class="art-star star-b">✧</span></div></section>
+      <section class="stats-grid" aria-label="Kütüphane özeti">
+        <article class="stat-card"><div class="stat-top"><span>KÜTÜPHANEDEKİ OYUN</span><span class="stat-icon violet">▦</span></div><div class="stat-value" id="game-total">—</div><div class="stat-note">oyun koleksiyonunda</div></article>
+        <article class="stat-card"><div class="stat-top"><span>TOPLAM OYNAMA SÜRESİ</span><span class="stat-icon blue">◷</span></div><div class="stat-value" id="hours-total">—</div><div class="stat-note">tüm oyunlarda</div></article>
+        <article class="stat-card"><div class="stat-top"><span>SON 2 HAFTA</span><span class="stat-icon amber">↗</span></div><div class="stat-value" id="recent-total">—</div><div class="stat-note">oyun başında geçirilen saat</div></article>
+      </section>
+      <section class="chart-panel" id="insights"><div class="panel-heading"><div><div class="section-kicker">OYUN ALIŞKANLIKLARIN</div><h2>En çok oynadıkların</h2></div><span class="chart-period">Tüm zamanlar <span>⌄</span></span></div><div class="chart-wrap"><div id="chart" class="chart" role="img" aria-label="En çok oynanan oyunların süre grafiği"><div class="empty-chart">Kütüphaneyi bağlayınca en çok oynadığın oyunlar burada görünecek.</div></div></div></section>
+      <section class="library-section"><div class="section-title-row"><div><div class="section-kicker">KOLEKSİYONUN</div><h2>Oyunların <span class="count-pill" id="list-count">0</span></h2></div><div class="view-toggle" role="group" aria-label="Görünüm"><button class="view-btn selected" id="list-view" title="Liste görünümü">☷</button><button class="view-btn" id="grid-view" title="Kart görünümü">▦</button></div></div>
+        <div class="toolbar"><label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Oyunlarında ara…" aria-label="Oyun adına göre ara"><kbd>⌘ K</kbd></label><button id="sort-btn" class="sort-button">Oynama süresi <span>↓</span></button><button class="refresh-button" id="refresh" title="Yenile">↻</button></div>
+        <div class="game-table" id="games"><div class="table-head"><span>OYUN</span><span>SON 2 HAFTA</span><span>TOPLAM SÜRE</span><span></span></div><div id="game-rows"></div><div id="empty-state" class="empty-state"><div class="empty-symbol">◷</div><h3>Kütüphanen burada başlayacak</h3><p>Steam API bilgilerini ekle, oyunların ve oynama sürelerin bu alanda görünsün.</p><button class="primary-button" id="connect-cta">Steam’e bağlan <span>→</span></button></div></div>
+        <div id="no-results" class="no-results" hidden>Bu aramayla eşleşen oyun bulunamadı.</div>
+      </section>
+      <footer>Steam Playtime <span>·</span> Veriler Steam Web API’den alınır</footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="settings-modal" hidden><section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close-modal" id="close-settings" aria-label="Kapat">×</button><div class="modal-icon">⌑</div><div class="section-kicker">BAĞLANTI AYARLARI</div><h2 id="modal-title">Steam kütüphaneni bağla</h2><p class="modal-copy">API key ve SteamID64 bilgilerin bu tarayıcıda saklanır ve yalnızca Steam’den kütüphaneni çekmek için kullanılır.</p><form id="settings-form"><label for="api-key">Steam Web API Key</label><input id="api-key" type="password" autocomplete="off" placeholder="32 karakterli API key" required><label for="steam-id">SteamID64</label><input id="steam-id" inputmode="numeric" autocomplete="off" placeholder="7656119XXXXXXXXXX" required><div class="helper">API key’in yok mu? <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noreferrer">Steam’den al ↗</a><br>SteamID64’ünü profil URL’inde veya SteamID bulucuda görebilirsin.</div><div class="modal-error" id="form-error" role="alert" hidden></div><button class="primary-button full-button" type="submit" id="save-connect">Kaydet ve kütüphaneyi yükle <span>→</span></button><button class="remove-key" type="button" id="remove-key">Bu cihazdaki kayıtlı bilgileri sil</button></form></section></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="app.js" defer></script>
+</body></html>
